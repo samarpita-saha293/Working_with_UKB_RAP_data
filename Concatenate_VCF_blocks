@@ -9,7 +9,7 @@ output_directory="/Cohorts/SAS_WGS_500k/"
 tag="bcftools_concat"
 instance_type="mem1_ssd1_v2_x16"
 
-# Find all .vcf.gz files in the directory
+# First check the no. of blocks of VCF for each chromosome and replace the no. in the curly brackets accordingly
 vcf_files=("$vcf_directory"ukb24310_c1_b{1..12448}_v1.vcf.gz)
 
 # Construct the bcftools command
