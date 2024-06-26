@@ -4,8 +4,8 @@ For chrom in {1..22};
 do
 
 # Directory containing the VCF files
-vcf_directory="/Bulk/DRAGEN WGS/DRAGEN population level WGS variants, pVCF format [500k release]/chr1/"
-output_directory="/Cohorts/SAS_WGS_500k/"
+vcf_directory="/Bulk/Path\ to \ Output\ Directory/chr1/"
+output_directory="/Cohorts/path/to/output/directory"
 tag="bcftools_concat"
 instance_type="mem1_ssd1_v2_x16"
 
