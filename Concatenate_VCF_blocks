@@ -1,7 +1,8 @@
 #!/bin/bash/
 
-For chrom in {1..22};
-do
+# This process must be repeated separately for each of the chromosomes and running the process for all the chromosome at once using a for loop will not be possible since 
+# the no. of blocks of each chromosome is different and the no. of blocks must be correctly mentioned as it is not possible to provide file names that are not available 
+# in the directory.
 
 # Directory containing the VCF files
 vcf_directory="/Bulk/Path\ to\ Output\ Directory/chr1/"
@@ -24,8 +25,6 @@ done
 
 # Add the remaining flags and the bcftools command
 dx_command+=" -icmd=\"$bcftools_cmd\" --tag=\"$tag\" --instance-type=\"$instance_type\" --destination=\"$output_directory\""
-
-done
 
 # Print the dx command for debugging purposes
 echo "Running command: $dx_command"
