@@ -1,1 +1,37 @@
+#!/bin/bash/
 
+For chrom in {1..22};
+do
+
+# Directory containing the VCF files
+vcf_directory="/Bulk/DRAGEN WGS/DRAGEN population level WGS variants, pVCF format [500k release]/chr1/"
+output_directory="/Cohorts/SAS_WGS_500k/"
+tag="bcftools_concat"
+instance_type="mem1_ssd1_v2_x16"
+
+# Find all .vcf.gz files in the directory
+vcf_files=("$vcf_directory"ukb24310_c1_b{1..12448}_v1.vcf.gz)
+
+# Construct the bcftools command
+bcftools_cmd="bcftools concat *.vcf.gz -Oz -o SAS_WGS_concat_c1.vcf.gz"
+
+# Construct the dx command with multiple -iin arguments
+dx_command="dx run swiss-army-knife"
+
+for vcf_file in "${vcf_files[@]}"; do
+  dx_command+=" -iin=\"$vcf_file\""
+done
+
+# Add the remaining flags and the bcftools command
+dx_command+=" -icmd=\"$bcftools_cmd\" --tag=\"$tag\" --instance-type=\"$instance_type\" --destination=\"$output_directory\""
+
+done
+
+# Print the dx command for debugging purposes
+echo "Running command: $dx_command"
+
+# Execute the dx command
+eval $dx_command
+
+# Print confirmation message
+echo "Input Files Loaded. VCF merge initiated"
