@@ -1,36 +1,36 @@
 #!/bin/bash/
 
-# This process must be repeated separately for each of the chromosomes and running the process for all the chromosome at once using a for loop will not be possible since 
-# the no. of blocks of each chromosome is different and the no. of blocks must be correctly mentioned as it is not possible to provide file names that are not available 
+# This process must be repeated separately for each of the chromosomes and we are not running the script for all the chromosome at once using a for loop because the no.
+# of blocks of each chromosome is different and the no. of blocks must be correctly mentioned as it is important to provide accurately thefile names that are available 
 # in the directory.
 
-# Directory containing the VCF files
+# For our study we've extracted the DRAGEN WGS population level data (Field ID:24310)
+# Choose the instance type suitable for processing your data
 vcf_directory="/Bulk/Path\ to\ Output\ Directory/chr1/"
 output_directory="/Cohorts/path/to/output/directory"
 tag="bcftools_concat"
 instance_type="mem1_ssd1_v2_x16"
 
-# First check the no. of blocks of VCF for each chromosome and replace the no. in the curly brackets accordingly
+# First check the no. of blocks of VCF for each chromosome and replace the no. in the curly brackets accordingly for each chromosome
 vcf_files=("$vcf_directory"ukb24310_c1_b{1..12448}_v1.vcf.gz)
 
-# Construct the bcftools command
+# Constructing the bcftools command
 bcftools_cmd="bcftools concat *.vcf.gz -Oz -o SAS_WGS_concat_c1.vcf.gz"
 
-# Construct the dx command with multiple -iin arguments
+# Constructing the dx command with multiple -iin arguments since each input is to be imported separately in Swiss-Army-Knife
 dx_command="dx run swiss-army-knife"
 
 for vcf_file in "${vcf_files[@]}"; do
   dx_command+=" -iin=\"$vcf_file\""
 done
 
-# Add the remaining flags and the bcftools command
+# Adding the remaining flags and the bcftools command
 dx_command+=" -icmd=\"$bcftools_cmd\" --tag=\"$tag\" --instance-type=\"$instance_type\" --destination=\"$output_directory\""
 
-# Print the dx command for debugging purposes
+# Running our Sript
 echo "Running command: $dx_command"
 
-# Execute the dx command
 eval $dx_command
 
-# Print confirmation message
+# Confirmation message
 echo "Input Files Loaded. VCF merge initiated"
