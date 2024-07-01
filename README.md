@@ -6,4 +6,4 @@ This GitHub repository provides tutorials and scripts used to analyze genotype d
 
 * Concatenate_VCF_blocks
 
-Since the Data available Joint call WGS data
+  Since the Data available Joint call WGS data
