@@ -6,4 +6,4 @@ This GitHub repository provides tutorials and scripts used to analyze genotype d
 
 * __Concatenate_VCF_blocks__
 
-  Since the Whole-genome Sequencing (WGS) joint genotype data (VCF) for each chromosome available on UK Biobank RAP platform is divided into blocks, it is required to merge the blocks sequentially for further analysis. This script merges the blocks of joint VCFs of each chromosome. For merging the files "BCFtools Concat" has been used.
+  Since the WGS joint genotype data (VCF) for each chromosome available on UK Biobank RAP platform is divided into blocks, it is required to merge the blocks sequentially for further analysis. This script merges the blocks of joint VCFs of each chromosome. For merging the files "BCFtools Concat" has been used.
