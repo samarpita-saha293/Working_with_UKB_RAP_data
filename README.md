@@ -1,4 +1,4 @@
-# Working_with_ukb_rap_data
+# Working_on_UKB_RAP
 
 This GitHub repository provides tutorials and scripts used to analyze population-level genotype data on UK Biobank Research Analysis Platform. For reseachers familiar with Unix and working on UK Biobank Data this README will probably be helpful.
 
